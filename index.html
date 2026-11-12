@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jingle Bell Rock & Groove - 70s Retro Christmas Party</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Lora:ital,wght@0,600;0,700;1,600;1,700&family=Montserrat:wght@700;800;900&family=Shrikhand&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-purple: #250b3d;
+            --cream: #f5ebd3;
+            --gold: #e8a832;
+            --orange: #da6628;
+            --pink: #df3a80;
+            --teal: #238ba3;
+            --dark-outline: #23093b;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at center, #2e0d4d 0%, #150324 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .poster-frame {
+            position: relative;
+            width: 100%;
+            max-width: 580px;
+            aspect-ratio: 2 / 3;
+            background: radial-gradient(circle at 50% 42%, #451b6e 0%, #290b47 68%, #1d0633 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 0 4px rgba(232, 168, 50, 0.4), 0 0 0 8px rgba(223, 58, 128, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            user-select: none;
+        }
+
+        .paper-grain {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 40;
+            opacity: 0.12;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        @keyframes waveFloatTop {
+            0%, 100% { transform: translateX(0px) translateY(0px) scaleY(1); }
+            50% { transform: translateX(-14px) translateY(4px) scaleY(1.04); }
+        }
+
+        @keyframes waveFloatBottom {
+            0%, 100% { transform: translateX(0px) translateY(0px) scaleY(1); }
+            50% { transform: translateX(14px) translateY(-4px) scaleY(1.04); }
+        }
+
+        .top-waves-anim { animation: waveFloatTop 7s ease-in-out infinite; transform-origin: center top; }
+        .bottom-waves-anim { animation: waveFloatBottom 7.5s ease-in-out infinite; transform-origin: center bottom; }
+
+        @keyframes diamondSparkle {
+            0%, 100% { transform: scale(0.6) rotate(0deg); opacity: 0.4; filter: drop-shadow(0 0 2px rgba(245,235,211,0.3)); }
+            50% { transform: scale(1.35) rotate(45deg); opacity: 1; filter: drop-shadow(0 0 10px rgba(255,255,255,0.9)); }
+        }
+        .sparkle-slow { animation: diamondSparkle 3s ease-in-out infinite; }
+        .sparkle-fast { animation: diamondSparkle 1.8s ease-in-out infinite; }
+
+        @keyframes spinVinyl {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes flowerSway {
+            0%, 100% { transform: rotate(-8deg) scale(1); }
+            50% { transform: rotate(12deg) scale(1.06); }
+        }
+
+        @keyframes hatBob {
+            0%, 100% { transform: rotate(14deg) translateY(0px); }
+            50% { transform: rotate(20deg) translateY(-4px); }
+        }
+
+        @keyframes skateGroove {
+            0%, 100% { transform: translateY(0px) rotate(-2deg); }
+            50% { transform: translateY(-6px) rotate(2deg); }
+        }
+
+        @keyframes skateGrooveFast {
+            0%, 100% { transform: translateY(0px) rotate(-4deg) scale(1.02); }
+            50% { transform: translateY(-10px) rotate(4deg) scale(1.05); }
+        }
+
+        @keyframes titleGroovePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .vinyl-spin { animation: spinVinyl 6s linear infinite; transform-origin: center; }
+        .vinyl-spin-fast { animation: spinVinyl 2s linear infinite; transform-origin: center; }
+        .flower-sway { animation: flowerSway 5.5s ease-in-out infinite; transform-origin: center; }
+        .hat-bob { animation: hatBob 2.4s ease-in-out infinite; transform-origin: bottom left; }
+        .skate-groove { animation: skateGroove 2.2s ease-in-out infinite; transform-origin: bottom center; }
+        .skate-groove-fast { animation: skateGrooveFast 0.75s ease-in-out infinite; transform-origin: bottom center; }
+        .title-grooving { animation: titleGroovePulse 0.8s ease-in-out infinite; }
+
+        .serif-italic {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-weight: 700;
+            color: var(--cream);
+            text-shadow: 0 2px 4px rgba(20, 4, 36, 0.8);
+        }
+
+        .groovy-word {
+            font-family: 'Shrikhand', cursive;
+            line-height: 0.92;
+            letter-spacing: 0.01em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .word-jingle {
+            color: #f6ebd2;
+            -webkit-text-stroke: 2.5px #23093b;
+            paint-order: stroke fill;
+            text-shadow: 0 4px 0 #23093b, 0 7px 0 #d96528, 0 10px 14px rgba(0, 0, 0, 0.55);
+        }
+
+        .word-rock {
+            color: #ebb038;
+            -webkit-text-stroke: 2.5px #23093b;
+            paint-order: stroke fill;
+            text-shadow: 0 4px 0 #23093b, 0 6px 0 #9e3d14, 0 9px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        .word-groove {
+            color: #e64288;
+            -webkit-text-stroke: 2.5px #23093b;
+            paint-order: stroke fill;
+            text-shadow: 0 4px 0 #23093b, 0 7px 0 #f5ebd3, 0 10px 0 #23093b, 0 13px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .retro-banner {
+            background: var(--cream);
+            color: #2c0e49;
+            border: 3px solid #23093b;
+            box-shadow: 0 0 0 4px #e64288, 0 0 0 7px #e8a832, 0 8px 18px rgba(0, 0, 0, 0.45);
+            border-radius: 999px;
+            transform: perspective(300px) rotateX(6deg);
+        }
+
+        .details-pill {
+            background: var(--cream);
+            border: 3px solid #23093b;
+            box-shadow: 0 0 0 5px #e64288, 0 0 0 10px #e8a832, 0 12px 24px rgba(0, 0, 0, 0.5);
+            border-radius: 36px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="posterContainer" class="poster-frame">
+        <div class="paper-grain"></div>
+
+        <!-- BACKGROUND DIAMOND SPARKLE FIELD -->
+        <div class="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+            <svg class="absolute top-[8%] left-[10%] w-6 h-6 text-yellow-300 sparkle-slow" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            <svg class="absolute top-[14%] right-[14%] w-8 h-8 text-white sparkle-fast" style="animation-delay: 0.5s;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            <svg class="absolute top-[28%] left-[6%] w-7 h-7 text-pink-300 sparkle-slow" style="animation-delay: 1.2s;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            <svg class="absolute top-[34%] right-[8%] w-6 h-6 text-yellow-200 sparkle-fast" style="animation-delay: 0.8s;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            <svg class="absolute top-[52%] left-[4%] w-5 h-5 text-white sparkle-slow" style="animation-delay: 1.8s;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            <svg class="absolute top-[48%] right-[5%] w-7 h-7 text-pink-400 sparkle-fast" style="animation-delay: 0.3s;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            <svg class="absolute top-[68%] left-[9%] w-8 h-8 text-yellow-300 sparkle-slow" style="animation-delay: 1s;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            <svg class="absolute top-[75%] right-[12%] w-6 h-6 text-white sparkle-fast" style="animation-delay: 1.5s;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+            <svg class="absolute top-[88%] left-[15%] w-5 h-5 text-pink-300 sparkle-slow" style="animation-delay: 0.7s;" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0L15 9L24 12L15 15L12 24L9 15L0 12L9 9L12 0Z"/></svg>
+        </div>
+
+        <!-- TOP WAVES -->
+        <svg class="absolute top-0 left-[-5%] w-[110%] h-[34%] pointer-events-none z-0 top-waves-anim" viewBox="0 0 600 280" preserveAspectRatio="none">
+            <path d="M-20,0 L620,0 L620,130 C480,175 410,65 300,95 C190,125 110,195 -20,145 Z" fill="#238ba3"/>
+            <path d="M-20,0 L620,0 L620,105 C485,150 410,45 300,72 C190,100 110,165 -20,118 Z" fill="#e8a832"/>
+            <path d="M-20,0 L620,0 L620,82 C485,125 410,25 300,50 C190,75 110,138 -20,92 Z" fill="#da6628"/>
+            <path d="M-20,0 L620,0 L620,58 C485,98 410,8 300,30 C190,52 110,110 -20,66 Z" fill="#df3a80"/>
+        </svg>
+
+        <!-- FLOWERS -->
+        <svg class="absolute top-[48%] -left-6 w-24 h-24 sm:w-32 sm:h-32 pointer-events-none z-10 flower-sway" viewBox="0 0 120 120">
+            <g transform="translate(60,60)">
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#df3a80" stroke="#23093b" stroke-width="2"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#df3a80" stroke="#23093b" stroke-width="2" transform="rotate(60)"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#df3a80" stroke="#23093b" stroke-width="2" transform="rotate(120)"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#df3a80" stroke="#23093b" stroke-width="2" transform="rotate(180)"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#df3a80" stroke="#23093b" stroke-width="2" transform="rotate(240)"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#df3a80" stroke="#23093b" stroke-width="2" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="16" fill="#e8a832" stroke="#23093b" stroke-width="2"/>
+            </g>
+        </svg>
+
+        <svg class="absolute top-[32%] -right-6 w-24 h-24 sm:w-30 sm:h-30 pointer-events-none z-10 flower-sway" style="animation-delay: 1.5s;" viewBox="0 0 120 120">
+            <g transform="translate(60,60)">
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#238ba3" stroke="#23093b" stroke-width="2"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#238ba3" stroke="#23093b" stroke-width="2" transform="rotate(60)"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#238ba3" stroke="#23093b" stroke-width="2" transform="rotate(120)"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#238ba3" stroke="#23093b" stroke-width="2" transform="rotate(180)"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#238ba3" stroke="#23093b" stroke-width="2" transform="rotate(240)"/>
+                <ellipse cx="0" cy="-32" rx="14" ry="24" fill="#238ba3" stroke="#23093b" stroke-width="2" transform="rotate(300)"/>
+                <circle cx="0" cy="0" r="16" fill="#f5ebd3" stroke="#23093b" stroke-width="2"/>
+            </g>
+        </svg>
+
+        <!-- BOTTOM WAVES -->
+        <svg class="absolute bottom-0 left-[-5%] w-[110%] h-[23%] pointer-events-none z-0 bottom-waves-anim" viewBox="0 0 600 200" preserveAspectRatio="none">
+            <path d="M-20,45 C120,10 230,95 360,65 C470,40 540,75 620,55 L620,200 L-20,200 Z" fill="#f5ebd3"/>
+            <path d="M-20,65 C120,30 230,115 360,85 C470,60 540,95 620,75 L620,200 L-20,200 Z" fill="#e8a832"/>
+            <path d="M-20,88 C120,55 230,138 360,108 C470,82 540,118 620,98 L620,200 L-20,200 Z" fill="#da6628"/>
+            <path d="M-20,112 C120,80 230,162 360,132 C470,108 540,142 620,122 L620,200 L-20,200 Z" fill="#df3a80"/>
+        </svg>
+
+        <!-- CONTENT -->
+        <div class="relative z-20 flex flex-col items-center text-center h-full px-4 sm:px-7 pt-2 pb-4 justify-between">
+            <div class="relative flex flex-col items-center -mt-1 cursor-pointer group" onclick="toggleAudioPlayback()">
+                <canvas id="discoBallCanvas" class="w-28 h-28 sm:w-36 sm:h-36 rounded-full drop-shadow-[0_6px_18px_rgba(0,0,0,0.55)]"></canvas>
+            </div>
+
+            <div class="-mt-2">
+                <p class="serif-italic text-lg sm:text-2xl tracking-wide">You’re Invited to</p>
+            </div>
+
+            <div id="titleBlock" class="relative flex flex-col items-center w-full -mt-1">
+                <div class="relative inline-block">
+                    <h1 class="groovy-word word-jingle text-[2.65rem] sm:text-[3.55rem] uppercase">JINGLE BELL</h1>
+                    <svg class="absolute -top-6 -right-4 sm:-top-8 sm:-right-5 w-14 h-14 sm:w-18 sm:h-18 hat-bob pointer-events-none drop-shadow-[0_3px_4px_rgba(0,0,0,0.5)]" viewBox="0 0 100 100">
+                        <path d="M18,62 C22,22 62,12 85,48 C76,46 66,48 62,56 C48,50 30,54 18,62 Z" fill="#d62839" stroke="#23093b" stroke-width="3.5" stroke-linejoin="round"/>
+                        <rect x="12" y="56" width="54" height="16" rx="8" transform="rotate(-12 39 64)" fill="#f5ebd3" stroke="#23093b" stroke-width="3.5"/>
+                        <circle cx="86" cy="52" r="10" fill="#f5ebd3" stroke="#23093b" stroke-width="3.5"/>
+                    </svg>
+                </div>
+
+                <div class="relative flex items-center justify-center gap-1 sm:gap-2 -mt-1 sm:-mt-2">
+                    <span class="groovy-word word-rock text-[2.45rem] sm:text-[3.3rem] uppercase">ROCK &amp;</span>
+                </div>
+
+                <div class="-mt-1 sm:-mt-2">
+                    <span class="groovy-word word-groove text-[2.7rem] sm:text-[3.65rem] uppercase">GROOVE</span>
+                </div>
+            </div>
+
+            <div class="w-full max-w-[92%] my-1">
+                <div class="retro-banner py-1.5 px-4 sm:py-2 sm:px-6">
+                    <span class="font-black text-xs sm:text-base tracking-[0.06em] uppercase block">A RETRO FUNK CHRISTMAS PARTY</span>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-2 sm:gap-3 px-2">
+                <p class="serif-italic text-xs sm:text-[15px] leading-snug max-w-[260px] sm:max-w-[330px]">
+                    Let’s bring back the funky 70s with dazzling disco vibes and festive Christmas magic!
+                </p>
+            </div>
+
+            <div class="w-full max-w-[92%] details-pill px-3.5 py-3 sm:px-5 sm:py-4 text-[#2c0e49] my-1">
+                <div class="grid grid-cols-[1fr_auto_1.18fr] items-center gap-2 sm:gap-3">
+                    <div class="flex items-center gap-2 text-left">
+                        <div class="leading-tight">
+                            <div class="font-extrabold text-[11px] sm:text-[13px]">DECEMBER 19, 2026</div>
+                            <div class="font-extrabold text-[11px] sm:text-[13px]">(SATURDAY)</div>
+                        </div>
+                    </div>
+                    <div class="w-[2px] h-11 sm:h-12 bg-[#2c0e49]/80 rounded-full"></div>
+                    <div class="flex items-center gap-2 text-left">
+                        <div class="leading-tight">
+                            <div class="font-extrabold text-[10.5px] sm:text-[12.5px]">DIVINE GRACE MEDICAL CENTER</div>
+                            <div class="font-extrabold text-[9.5px] sm:text-[11px] text-[#4a1a75] mt-0.5">7TH FLOOR MEDICAL ARTS BLDG</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="h-14 sm:h-16"></div>
+        </div>
+
+        <!-- VINYL -->
+        <div id="vinylWrapper" class="absolute -bottom-8 -left-8 w-36 h-36 sm:w-44 sm:h-44 z-30 pointer-events-none">
+            <svg id="vinylDisc" class="w-full h-full vinyl-spin drop-shadow-[0_6px_14px_rgba(0,0,0,0.65)]" viewBox="0 0 200 200">
+                <circle cx="100" cy="100" r="96" fill="#16141a" stroke="#09080c" stroke-width="3"/>
+                <circle cx="100" cy="100" r="86" fill="none" stroke="#2d2936" stroke-width="1.2"/>
+                <circle cx="100" cy="100" r="76" fill="none" stroke="#2d2936" stroke-width="1.2"/>
+                <circle cx="100" cy="100" r="66" fill="none" stroke="#2d2936" stroke-width="1.2"/>
+                <circle cx="100" cy="100" r="32" fill="#da6628" stroke="#23093b" stroke-width="2"/>
+                <circle cx="100" cy="100" r="5" fill="#16141a"/>
+            </svg>
+        </div>
+
+        <!-- SKATE -->
+        <div id="skateWrapper" class="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-32 h-32 sm:w-40 sm:h-40 z-30 pointer-events-none skate-groove">
+            <svg class="w-full h-full drop-shadow-[0_6px_12px_rgba(0,0,0,0.5)]" viewBox="0 0 180 180">
+                <path d="M58,28 L96,26 L104,76 C115,86 146,90 154,108 C158,118 152,126 140,126 L54,126 C46,126 44,118 48,106 L58,28 Z" fill="#f5ebd3" stroke="#23093b" stroke-width="3.5" stroke-linejoin="round"/>
+                <path d="M46,126 L152,126 L150,134 L82,134 L78,142 L48,142 Z" fill="#da6628" stroke="#23093b" stroke-width="3" stroke-linejoin="round"/>
+                <circle cx="66" cy="156" r="15" fill="#df3a80" stroke="#23093b" stroke-width="3"/>
+                <circle cx="130" cy="156" r="15" fill="#df3a80" stroke="#23093b" stroke-width="3"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- LOCKED AUDIO ELEMENT -->
+    <audio id="bgMusic" src="santa-claus.mp3" loop preload="auto"></audio>
+
+    <!-- SIMPLE PLAY BUTTON -->
+    <div class="mt-4 flex flex-col items-center gap-2 z-50">
+        <button id="musicBtn" onclick="toggleAudioPlayback()"
+                class="flex items-center gap-2.5 px-6 py-3 rounded-full font-extrabold text-sm sm:text-base uppercase tracking-wider text-[#23093b] bg-gradient-to-r from-[#f5ebd3] via-[#e8a832] to-[#df3a80] border-[3px] border-[#23093b] shadow-[0_6px_20px_rgba(223,58,128,0.5)] hover:scale-105 active:scale-95 transition cursor-pointer">
+            <span id="musicBtnIcon">▶</span>
+            <span id="musicBtnText">Play Groove</span>
+        </button>
+    </div>
+
+    <script>
+        const discoCanvas = document.getElementById('discoBallCanvas');
+        const dCtx = discoCanvas.getContext('2d');
+        let ballAngle = 0;
+        let isMusicPlaying = false;
+        let beatBounce = 0;
+
+        function setupDiscoCanvas() {
+            const rect = discoCanvas.getBoundingClientRect();
+            const dpr = window.devicePixelRatio || 1;
+            discoCanvas.width = rect.width * dpr;
+            discoCanvas.height = rect.height * dpr;
+            dCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        }
+        window.addEventListener('resize', setupDiscoCanvas);
+        setupDiscoCanvas();
+
+        const mirrorPalette = ['#f5ebd3', '#df3a80', '#9d4edd', '#5a189a', '#238ba3', '#e8a832', '#ffffff'];
+        const latRows = 14;
+        const lonCols = 24;
+        const tileColors = [];
+        for (let r = 0; r < latRows; r++) {
+            const row = [];
+            for (let c = 0; c < lonCols; c++) {
+                row.push(mirrorPalette[(r * 13 + c * 7) % mirrorPalette.length]);
+            }
+            tileColors.push(row);
+        }
+
+        function animateDiscoBall() {
+            const rect = discoCanvas.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+            const cx = w / 2;
+            const cy = h / 2;
+
+            if (isMusicPlaying) {
+                beatBounce = Math.abs(Math.sin(ballAngle * 6)) * 0.9;
+            } else {
+                beatBounce *= 0.85;
+            }
+
+            const rBase = Math.min(w, h) * 0.43 + beatBounce * 2.5;
+            dCtx.clearRect(0, 0, w, h);
+            dCtx.fillStyle = '#23093b';
+            dCtx.beginPath();
+            dCtx.arc(cx, cy, rBase + 2, 0, Math.PI * 2);
+            dCtx.fill();
+
+            for (let r = 0; r < latRows; r++) {
+                const phi1 = (r / latRows) * Math.PI - Math.PI / 2;
+                const phi2 = ((r + 1) / latRows) * Math.PI - Math.PI / 2;
+                const phiMid = (phi1 + phi2) / 2;
+
+                for (let c = 0; c < lonCols; c++) {
+                    const theta1 = (c / lonCols) * Math.PI * 2 + ballAngle;
+                    const theta2 = ((c + 1) / lonCols) * Math.PI * 2 + ballAngle;
+                    const thetaMid = (theta1 + theta2) / 2;
+                    const z = Math.cos(phiMid) * Math.cos(thetaMid);
+                    if (z <= -0.05) continue;
+
+                    const x1 = cx + rBase * Math.cos(phi1) * Math.sin(theta1);
+                    const y1 = cy + rBase * Math.sin(phi1);
+                    const x2 = cx + rBase * Math.cos(phi1) * Math.sin(theta2);
+                    const y2 = cy + rBase * Math.sin(phi1);
+                    const x3 = cx + rBase * Math.cos(phi2) * Math.sin(theta2);
+                    const y3 = cy + rBase * Math.sin(phi2);
+                    const x4 = cx + rBase * Math.cos(phi2) * Math.sin(theta1);
+                    const y4 = cy + rBase * Math.sin(phi2);
+
+                    dCtx.beginPath();
+                    dCtx.moveTo(x1, y1); dCtx.lineTo(x2, y2); dCtx.lineTo(x3, y3); dCtx.lineTo(x4, y4);
+                    dCtx.closePath();
+                    dCtx.fillStyle = tileColors[r][c];
+                    dCtx.globalAlpha = Math.min(1, 0.35 + z * 0.65);
+                    dCtx.fill();
+                }
+            }
+            dCtx.globalAlpha = 1;
+            ballAngle += isMusicPlaying ? 0.032 : 0.009;
+            requestAnimationFrame(animateDiscoBall);
+        }
+        animateDiscoBall();
+
+        const bgMusic = document.getElementById('bgMusic');
+        const btnText = document.getElementById('musicBtnText');
+        const btnIcon = document.getElementById('musicBtnIcon');
+        const vinylDisc = document.getElementById('vinylDisc');
+        const skateWrapper = document.getElementById('skateWrapper');
+        const titleBlock = document.getElementById('titleBlock');
+
+        function setPlayingVisualState(playing) {
+            isMusicPlaying = playing;
+            if (playing) {
+                btnText.textContent = 'Pause Groove';
+                btnIcon.textContent = '⏸';
+                vinylDisc.classList.remove('vinyl-spin');
+                vinylDisc.classList.add('vinyl-spin-fast');
+                skateWrapper.classList.remove('skate-groove');
+                skateWrapper.classList.add('skate-groove-fast');
+                titleBlock.classList.add('title-grooving');
+            } else {
+                btnText.textContent = 'Play Groove';
+                btnIcon.textContent = '▶';
+                vinylDisc.classList.remove('vinyl-spin-fast');
+                vinylDisc.classList.add('vinyl-spin');
+                skateWrapper.classList.remove('skate-groove-fast');
+                skateWrapper.classList.add('skate-groove');
+                titleBlock.classList.remove('title-grooving');
+            }
+        }
+
+        async function toggleAudioPlayback() {
+            if (bgMusic.paused) {
+                try {
+                    await bgMusic.play();
+                    setPlayingVisualState(true);
+                } catch (err) {
+                    setPlayingVisualState(false);
+                }
+            } else {
+                bgMusic.pause();
+                setPlayingVisualState(false);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            bgMusic.play().then(() => {
+                setPlayingVisualState(true);
+            }).catch(() => {
+                setPlayingVisualState(false);
+            });
+        });
+    </script>
+</body>
+</html>
